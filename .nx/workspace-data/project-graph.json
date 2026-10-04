@@ -13441,22 +13441,17 @@
     "tailings-monitor": [
       {
         "source": "tailings-monitor",
+        "target": "npm:@angular/common",
+        "type": "static"
+      },
+      {
+        "source": "tailings-monitor",
         "target": "npm:@angular/core",
         "type": "static"
       },
       {
         "source": "tailings-monitor",
-        "target": "npm:@turf/turf",
-        "type": "static"
-      },
-      {
-        "source": "tailings-monitor",
-        "target": "npm:maplibre-gl",
-        "type": "static"
-      },
-      {
-        "source": "tailings-monitor",
-        "target": "npm:@angular/common",
+        "target": "npm:@angular/forms",
         "type": "static"
       },
       {
@@ -13467,6 +13462,16 @@
       {
         "source": "tailings-monitor",
         "target": "npm:@ngrx/store",
+        "type": "static"
+      },
+      {
+        "source": "tailings-monitor",
+        "target": "npm:@turf/turf",
+        "type": "static"
+      },
+      {
+        "source": "tailings-monitor",
+        "target": "npm:maplibre-gl",
         "type": "static"
       },
       {
@@ -33605,5 +33610,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1790615726463
+  "computedAt": 1791111890446
 }

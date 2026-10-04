@@ -23,22 +23,44 @@ export const seedDataset: TailingsDataset = {
   anomalies: [
     {
       id: 'AN-260929-01', pointId: 'P-D01', title: '主坝D01累计位移超过报警阈值', severity: '重大', status: '待负责人审批', openedAt: '2026-09-29T08:25:00', owner: '坝体安全组', triggerReadingId: 'RD-1', observedValue: '18.7 mm，昨日变化4.2 mm/d', version: 7, closedAt: '',
-      fieldReviews: [{ id: 'FR-1', inspector: '宋立', arrivedAt: '2026-09-29T09:10:00', observed: '坝顶排水沟未见明显开裂，D01附近无新增裂缝，基准点稳定。', evidence: 'D01近景照片、基准点复核记录、GNSS原始观测文件', reassessment: '读数有效，位移趋势仍上升，建议立即降低库水位并加密监测。', version: 2 }],
+      fieldReviews: [{ id: 'FR-1', inspector: '甲班', arrivedAt: '2026-09-29T09:10:00', observed: '坝顶排水沟未见明显开裂，D01附近无新增裂缝，基准点稳定。', evidence: 'D01近景照片、基准点复核记录、GNSS原始观测文件', reassessment: '读数有效，位移趋势仍上升，建议立即降低库水位并加密监测。', version: 1, crew: '甲班', batchId: 'B-0929-01', basedOnReadingId: 'RD-1', confirmStatus: '已确认' }],
+      mergedFields: {
+        observed: { value: '坝顶排水沟未见明显开裂，D01附近无新增裂缝，基准点稳定。', crew: '甲班', batchId: 'B-0929-01', basedOnReadingId: 'RD-1', confirmStatus: '已确认' },
+        evidence: { value: 'D01近景照片、基准点复核记录、GNSS原始观测文件', crew: '甲班', batchId: 'B-0929-01', basedOnReadingId: 'RD-1', confirmStatus: '已确认' },
+        reassessment: { value: '读数有效，位移趋势仍上升，建议立即降低库水位并加密监测。', crew: '甲班', batchId: 'B-0929-01', basedOnReadingId: 'RD-1', confirmStatus: '已确认' },
+        planSuggestion: { value: '立即降低库水位并加密监测，2小时复测一次。', crew: '甲班', batchId: 'B-0929-01', basedOnReadingId: 'RD-1', confirmStatus: '已确认' }
+      },
+      conflicts: [],
       opinions: [
         { id: 'OP-1', specialist: '周岩', discipline: '岩土', content: '近三日位移速率持续高于阈值，需结合孔隙水压力分析潜在滑面。', conclusion: '支持结论', createdAt: '2026-09-29T10:20:00' },
         { id: 'OP-2', specialist: '许洁', discipline: '水文', content: '库水位仍接近警戒线，建议优先降低库水位并核对上游来水。', conclusion: '补充证据', createdAt: '2026-09-29T10:45:00' }
       ],
-      plan: { id: 'PL-1', action: '降低库水位', owner: '库区调度班', deadline: '2026-09-29T18:00:00', conditions: '每2小时复测D01、D02和W01；位移速率恢复至3mm/d以下并稳定12小时后，负责人可关闭异常。', emergencyLinked: true, approvedBy: '', approvedAt: '' }
+      plan: { id: 'PL-1', action: '降低库水位', owner: '库区调度班', deadline: '2026-09-29T18:00:00', conditions: '每2小时复测D01、D02和W01；位移速率恢复至3mm/d以下并稳定12小时后，负责人可关闭异常。', emergencyLinked: true, approvedBy: '', approvedAt: '', batchId: 'B-0929-01', crew: '甲班', basedOnReadingId: 'RD-1', confirmStatus: '已确认' }
     },
     {
       id: 'AN-260929-02', pointId: 'P-W01', title: '库水位短时上升速率超预警值', severity: '较高', status: '原因调查中', openedAt: '2026-09-29T08:00:00', owner: '库区调度班', triggerReadingId: 'RD-4', observedValue: '873.4 m，1小时上升0.6 m', version: 4, closedAt: '',
-      fieldReviews: [], opinions: [{ id: 'OP-3', specialist: '许洁', discipline: '水文', content: '上游降雨汇流导致入湖量增加，需核实泄洪闸状态。', conclusion: '支持结论', createdAt: '2026-09-29T09:00:00' }],
-      plan: { id: 'PL-2', action: '加密监测', owner: '库区调度班', deadline: '2026-09-29T14:00:00', conditions: '每小时记录水位与入库流量，达到874.0m时启动应急联动。', emergencyLinked: false, approvedBy: '', approvedAt: '' }
+      fieldReviews: [],
+      mergedFields: {},
+      conflicts: [],
+      opinions: [{ id: 'OP-3', specialist: '许洁', discipline: '水文', content: '上游降雨汇流导致入湖量增加，需核实泄洪闸状态。', conclusion: '支持结论', createdAt: '2026-09-29T09:00:00' }],
+      plan: { id: 'PL-2', action: '加密监测', owner: '库区调度班', deadline: '2026-09-29T14:00:00', conditions: '每小时记录水位与入库流量，达到874.0m时启动应急联动。', emergencyLinked: false, approvedBy: '', approvedAt: '', basedOnReadingId: 'RD-4', confirmStatus: '已确认' }
     }
   ],
   audit: [
-    { id: 'A-1', entityId: 'P-D01', action: '生成异常', operator: '阈值引擎', detail: '累计位移18.7mm超过报警阈值16mm', createdAt: '2026-09-29T08:25:00' },
-    { id: 'A-2', entityId: 'AN-260929-01', action: '提交现场复核', operator: '宋立', detail: '原始读数有效，位移趋势仍上升', createdAt: '2026-09-29T09:25:00' },
-    { id: 'A-3', entityId: 'AN-260929-01', action: '补充专业意见', operator: '周岩', detail: '建议结合孔隙水压力分析潜在滑面', createdAt: '2026-09-29T10:20:00' }
+    { id: 'A-3', entityId: 'AN-260929-01', action: '补充专业意见', operator: '周岩', detail: '建议结合孔隙水压力分析潜在滑面', createdAt: '2026-09-29T10:20:00' },
+    { id: 'A-2', entityId: 'AN-260929-01', action: '合并离线复核', operator: '甲班', detail: '批次B-0929-01合并4个字段（甲班）', createdAt: '2026-09-29T09:25:00', idempotencyKey: 'item-b0929-01-1', batchId: 'B-0929-01', conflictResult: '保留先到', confirmStatus: '已确认' },
+    { id: 'A-1', entityId: 'P-D01', action: '生成异常', operator: '阈值引擎', detail: '累计位移18.7mm超过报警阈值16mm', createdAt: '2026-09-29T08:25:00' }
+  ],
+  syncBatches: [
+    {
+      id: 'B-0929-01',
+      submittedAt: '2026-09-29T09:20:00',
+      syncedAt: '2026-09-29T09:25:00',
+      status: '已完成',
+      failNextWrite: false,
+      items: [
+        { id: 'OI-1', anomalyId: 'AN-260929-01', crew: '甲班', observed: '坝顶排水沟未见明显开裂，D01附近无新增裂缝，基准点稳定。', evidence: 'D01近景照片、基准点复核记录、GNSS原始观测文件', reassessment: '读数有效，位移趋势仍上升，建议立即降低库水位并加密监测。', planSuggestion: '立即降低库水位并加密监测，2小时复测一次。', basedOnReadingId: 'RD-1', capturedOfflineAt: '2026-09-29T09:10:00', status: '写入成功', idempotencyKey: 'item-b0929-01-1' }
+      ]
+    }
   ]
 }

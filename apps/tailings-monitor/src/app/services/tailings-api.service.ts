@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http'
 import { Injectable, inject } from '@angular/core'
 import { Observable, catchError, of } from 'rxjs'
-import type { TailingsDataset } from '../domain'
+import { buildReviewPackage, type ReviewPackage, type TailingsDataset } from '../domain'
 import { seedDataset } from '../data/seed'
 
 @Injectable({ providedIn: 'root' })
@@ -13,7 +13,12 @@ export class TailingsApiService {
     return this.http.get<TailingsDataset>(`${this.baseUrl}/tailings/snapshot`).pipe(catchError(() => of(structuredClone(seedDataset))))
   }
 
+  /** 审阅包：含批次来源、冲突结果、重新确认状态与完整审计轨迹 */
   exportPackage(payload: TailingsDataset): Observable<Blob> {
-    return this.http.post(`${this.baseUrl}/tailings/export`, payload, { responseType: 'blob' }).pipe(catchError(() => of(new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }))))
+    const reviewPackage: ReviewPackage = buildReviewPackage(payload)
+    const fallback = new Blob([JSON.stringify(reviewPackage, null, 2)], { type: 'application/json' })
+    return this.http
+      .post(`${this.baseUrl}/tailings/export`, reviewPackage, { responseType: 'blob' })
+      .pipe(catchError(() => of(fallback)))
   }
 }
