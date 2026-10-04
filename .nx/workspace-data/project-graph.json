@@ -13461,6 +13461,11 @@
       },
       {
         "source": "tailings-monitor",
+        "target": "npm:@angular/forms",
+        "type": "static"
+      },
+      {
+        "source": "tailings-monitor",
         "target": "npm:@angular/material",
         "type": "static"
       },
@@ -33605,5 +33610,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1790615726463
+  "computedAt": 1791111011137
 }

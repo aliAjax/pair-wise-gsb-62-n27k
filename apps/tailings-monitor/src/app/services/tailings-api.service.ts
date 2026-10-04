@@ -13,7 +13,7 @@ export class TailingsApiService {
     return this.http.get<TailingsDataset>(`${this.baseUrl}/tailings/snapshot`).pipe(catchError(() => of(structuredClone(seedDataset))))
   }
 
-  exportPackage(payload: TailingsDataset): Observable<Blob> {
+  exportPackage(payload: unknown): Observable<Blob> {
     return this.http.post(`${this.baseUrl}/tailings/export`, payload, { responseType: 'blob' }).pipe(catchError(() => of(new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' }))))
   }
 }
